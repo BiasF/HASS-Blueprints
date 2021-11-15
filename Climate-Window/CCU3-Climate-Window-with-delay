@@ -1,5 +1,5 @@
 blueprint:
-  name: Window Open, Notify HomeMatic CCU
+  name: Window Open, Notify HomeMatic CCU - with close Delay
   description:
     An automation blueprint that reduces the set temperature of your climate
     device or group if a window sensor is open for more than the preset wait time.
@@ -60,7 +60,7 @@ blueprint:
         entity:
           domain: climate
 
-  source_url: https://gist.github.com/sotatech/500b53ee64ca5ad5299c22cde47407ed
+  source_url: https://raw.githubusercontent.com/BiasF/HASS-Blueprints/main/Climate-Window/CCU3-Climate-Window-with-delay
 
 variables:
   blocking_entity: !input blocking_entity
