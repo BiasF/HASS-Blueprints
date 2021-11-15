@@ -41,7 +41,7 @@ blueprint:
         number:
           min: 0.0
           max: 600.0
-          unit_of_measurement: seconds
+          unit_of_measurement: minutes
           mode: slider
           step: 1.0
 
