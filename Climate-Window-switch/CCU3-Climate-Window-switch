@@ -12,7 +12,7 @@ blueprint:
       description: The window sensor that will control the climate entity.
       selector:
         entity:
-          domain: swicth
+          domain: input_boolean
 
     open_delay:
       name: Windows Open Wait Time
