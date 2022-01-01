@@ -1,5 +1,5 @@
 blueprint:
-  name: Window Open, Notify HomeMatic CCU - with close Delay
+  name: Window Open with switch, Notify HomeMatic CCU - with close Delay
   description:
     An automation blueprint that reduces the set temperature of your climate
     device or group if a window sensor is open for more than the preset wait time.
