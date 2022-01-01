@@ -9,7 +9,7 @@ blueprint:
   input:
     window_entity:
       name: Window Sensor
-      description: The window sensor that will control the climate entity.
+      description: The input_boolean that will control the climate entity.
       selector:
         entity:
           domain: input_boolean
