@@ -14,37 +14,17 @@ blueprint:
         entity:
           domain: input_boolean
 
-    open_delay:
-      name: Windows Open Wait Time
-      description: Time to delay after window opens before notifying HomeMatic.
-      default: 30
+    open_time:
+      name: Window open Time
+      description: Time to wait until the climate device turns on again
+      default: 15
       selector:
         number:
           min: 0.0
           max: 600.0
-          unit_of_measurement: seconds
+          unit_of_measurement: minutes
           mode: slider
           step: 1.0
-
-    close_delay:
-      name: Windows Close Wait Time
-      description: Time to delay after window closed before notifying HomeMatic.
-      default: 30
-      selector:
-        number:
-          min: 0.0
-          max: 1200.0
-          unit_of_measurement: seconds
-          mode: slider
-          step: 1.0
-
-    blocking_entity:
-      name: (OPTIONAL) Blocking Entity
-      description: If this entity's state is on, it will prevent the automation from running. E.g. summer mode or away mode.
-      default:
-      selector:
-        entity:
-          domain: input_boolean
 
     climate_entity:
       name: Climate Device
@@ -53,24 +33,18 @@ blueprint:
         entity:
           domain: climate
 
-  source_url: https://raw.githubusercontent.com/BiasF/HASS-Blueprints/main/Climate-Window/CCU3-Climate-Window-with-delay
+  source_url: https://raw.githubusercontent.com/BiasF/HASS-Blueprints/main/Climate-Window-switch/CCU3-Climate-Window-switch
 
 variables:
-  blocking_entity: !input blocking_entity
   climate_target: !input climate_entity
   climate_id: '{{ state_attr( climate_target, "id") }}'
-  open_delay: !input open_delay
-  close_delay: !input close_delay
+  open_time: !input open_delay
 
 trigger:
   - platform: state
     entity_id: !input "window_entity"
     to: "on"
     for: !input "open_delay"
-
-condition:
-  - condition: template
-    value_template: "{{ (blocking_entity == none) or (states[blocking_entity].state == 'off') }}"
 
 action:
   - service: homematic.set_device_value
@@ -84,7 +58,6 @@ action:
       - platform: state
         entity_id: !input "window_entity"
         to: "off"
-        for: !input "close_delay"
     continue_on_timeout: false
 
   - service: homematic.set_device_value
