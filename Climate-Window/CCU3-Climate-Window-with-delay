@@ -59,6 +59,8 @@ blueprint:
       selector:
         entity:
           domain: climate
+          multiple: true
+
 
   source_url: https://raw.githubusercontent.com/BiasF/HASS-Blueprints/main/Climate-Window/CCU3-Climate-Window-with-delay
 
